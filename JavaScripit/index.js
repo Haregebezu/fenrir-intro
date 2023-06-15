@@ -1,10 +1,7 @@
-var today = new Date();
+const today = new Date();
 var thisYear = today.getFullYear();
 var footer = document.querySelector("footer");
 var copyright = document.createElement('p');
-
-copyright.innerHTML = "Haregebezu Amare; " + thisYear;
-
 footer.appendChild(copyright);
 copyright.innerHTML = "\u00A9 " + thisYear;
 var skills = [
@@ -18,7 +15,6 @@ var skills = [
 ];
 var skillsSection = document.querySelector("#skills");
 var skillsList = skillsSection.querySelector('ul');
-
 for (var i = 0; i < skills.length; i++) {
     var skill = document.createElement("li");
     skill.innerText = skills[i];
