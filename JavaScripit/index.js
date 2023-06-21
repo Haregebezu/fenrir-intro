@@ -22,70 +22,51 @@ for (var i = 0; i < skills.length; i++) {
 }
 // DOM Selection
 const messageForm = document.forms.leave_message;
+// Select the #messages section by id
+const messageSection = document.querySelector('#messages');
+// Query the messageSection to find the <ul> element
+const messageList = messageSection .querySelector('ul');
+
 // Event Listener
 messageForm.addEventListener('submit', function (event) {
     event.preventDefault(); // Prevents the default refreshing behavior of the "submit" event
 
-    // Retrieve form field values
-    const usersName = event.target.usersName.value;
-    const usersEmail = event.target.usersEmail.value;
-    const usersMessage = event.target.usersMessage.value;
+    // Retrieve form field values using destructuring assignment
+    const { usersName: { value: usersName }, usersEmail: { value: usersEmail }, usersMessage: { value: usersMessage } } = event.target;
+
+    // Add "wrote:" prefix to the message
+    const formattedMessage = `wrote: ${usersMessage}`;
 
     // Log form field values
     console.log('Name:', usersName);
     console.log('Email:', usersEmail);
-    console.log('Message:', usersMessage);
-    messageForm.reset();
-});
+    console.log('Message:', formattedMessage);
 
-// User data
-const userData = [
-    { usersName: 'Elliot', usersEmail: 'elliot@example.com', usersMessage: 'wrote:hello world' },
-    { usersName: 'Tom', usersEmail: 'grace@example.com', usersMessage: 'wrote:what am I doing here' },
-    { usersName: 'Lori', usersEmail: 'oliver@example.com', usersMessage: 'wrote:good work!' }
-];
-// Select the #messages section by id
-const messageSection = document.querySelector('#messages');
-
-// Query the messageSection to find the <ul> element
-if (messageSection) {
-    const messageList = messageSection.querySelector('ul');
-
-    // Create and append new message elements
-    userData.forEach(user => {
-        const { usersName, usersEmail, usersMessage } = user;
-        // Create a new list item element
-        const newMessage = document.createElement('li');
-        // Set the inner HTML of the newMessage element
-        newMessage.innerHTML = `
-    <a href="mailto:${usersEmail}">${usersName}</a>
-    <span>${usersMessage}</span>
+    // Create a new list item element
+    const newMessage = document.createElement('li');
+    // Set the inner HTML of the newMessage element
+    newMessage.innerHTML = `
+        <a href="mailto:${usersEmail}">${usersName}</a>
+        <span>${formattedMessage}</span>
     `;
-        // Append newMessage to messageList
-        if (messageList) {
-            messageList.appendChild(newMessage);
-        }
-    
-        // Create a new <button> element
-        const removeButton = document.createElement('button');
-        removeButton.innerText = "remove";
-        removeButton.type = 'button';
-        // Add event listener to the removeButton
-        removeButton.addEventListener('click', function () {
-            const entry = removeButton.parentNode;
-            if (entry) {
-                entry.remove();
-            }
-        });
-        // Append the removeButton to the newMessage element
-        newMessage.appendChild(removeButton);
-        // Append newMessage to messageList
-        if (messageList) {
-            messageList.appendChild(newMessage);
+    // Create a new <button> element
+    const removeButton = document.createElement('button');
+    removeButton.innerText = "remove";
+    removeButton.type = 'button';
+    // Add event listener to the removeButton
+    removeButton.addEventListener('click', function () {
+        const entry = removeButton.parentNode;
+        if (entry) {
+            entry.remove();
         }
     });
-}
+    // Append the removeButton to the newMessage element
+    newMessage.appendChild(removeButton);
+    // Append newMessage to messageList
+    if (messageList) {
+        messageList.appendChild(newMessage);
+    }
 
-
-    
+    messageForm.reset();
+});
 
