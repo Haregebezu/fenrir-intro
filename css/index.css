@@ -14,18 +14,13 @@ h1 {
     text-align: center;
     font-size: 35px;
 }
-.exprience {
+.exprience, #skills {
     margin-bottom: 10px;
     background-color: #f1f1f1;
     padding:10px;
     border-radius: 4px;
 }
-#skills {
-    margin-bottom: 10px;
-    background-color: #f1f1f1;
-    padding:10px;
-    border-radius: 4px;
-}
+
 form {
     margin-bottom: 20px;
 }
@@ -52,3 +47,4 @@ footer {
     color: #333;
     padding: 10px;
 }
+
