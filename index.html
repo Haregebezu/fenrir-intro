@@ -5,18 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Portfolio</title>
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
     <h1>Haregebezu Amare</h1>
-    <section>
-        <h2>About</h2>
+    <section class="about">
+        <h2>About</h2> 
             <p>I have immersed myself in the world of software development for over a year. With an insatiable curiosity and passion
             for technology, I have delved into various programming languages, frameworks, and tools, building a solid foundation of
             technical knowledge. From mastering web development with HTML, CSS, and JavaScript, I have developed a versatile
             skill set. I am committed to lifelong learning, staying up to date with industry trends through workshops and online
             courses. Each day, embrace the challenges and rewards of being a software developer, poised to make a significant impact
             in the world of technology. </p>
-        <img src="nice wprk place.jpg" alt = "working place" style="max-width: 800px">  
+    </section>
+    <section class="image">
+        <img src="nice wprk place.jpg" alt = "working place" style="width: 800px;" > 
+    </section>
+    <section class="exprience">
         <h2>Experience</h2>
             <p> During my virtual classes in front-end development, I had the opportunity to acquire a comprehensive set of skills and
             deepen my understanding of the field. Over the course of the program, I delved into HTML, CSS, and JavaScript, gaining
@@ -32,16 +37,17 @@
             industry.</p>
     </section>
         <section id="skills">
-            <h2>Skills</h2>
+            <h3>Skills</h3>
             <ul></ul>
         </section>
-    <section>
         <footer>
-            <h2>Connect</h2>
+        <section>
+            <h4>Connect</h4>
             <ul>
                 <li><a href="https://github.com/Haregebezu" target="_blank">GitHub</a></li>
                 <li><a href="https://www.linkedin.com/in/haregebezu-amare/" target="_blank">Linkedin</a></li>
             </ul>
+        </section>
             <section>
                 <h2>Leave a Message</h2>
                 <form name="leave_message">
@@ -54,7 +60,7 @@
                     <label for="usersMessage">Message:</label><br>
                     <textarea name="usersMessage" id="usersMessage"></textarea><br>
 
-                    <button type="submit">Submit</button>
+                    <button type="submit" id="submit">Submit</button>
                 </form>
             </section>
             <section id="messages">
