@@ -50,7 +50,7 @@ footer {
     padding: 10px;
 }
 .nav {
-    padding-top: 4em; 
+    padding-top: 5em; 
     padding-left: 3em;     
 }
 .nav ul li {
@@ -58,7 +58,11 @@ footer {
 }
 header {
     position: fixed;
-    padding-bottom: 10px; 
+    padding-bottom: 10px;
+    
+    left:30%;
+    background-color: white;
+    opacity: 0.5;
 }
 #skills{
     display:flex;
@@ -73,7 +77,7 @@ header {
     border-radius: 8px;
     box-shadow: 0 2px 5 px rgba(0, 0, 0, 0.1);
 }
-.connect ul{
+#connect {
     padding-left: 3em;
     margin:10px;
 }
