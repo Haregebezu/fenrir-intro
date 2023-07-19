@@ -94,7 +94,9 @@ header {
 .message-part {
     padding: 20px;
 }
-
+#projects {
+    margin: 38px;
+}
 @media screen and (min-width:730px) {
     #skills li {
         display: inline-block;

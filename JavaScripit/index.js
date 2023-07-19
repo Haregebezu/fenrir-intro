@@ -70,3 +70,38 @@ messageForm.addEventListener('submit', function (event) {
     messageForm.reset();
 });
 
+var githubRequest = new XMLHttpRequest();
+var githubUsername = "Haregebezu";
+var url = "https://api.github.com/users/" + githubUsername + "/repos";
+
+githubRequest.addEventListener("load", function () {
+    // Request completed successfully
+    var repositories = JSON.parse(this.responseText);
+
+    var projectSection = document.getElementById("projects");
+    var projectList = projectSection.querySelector("ul");
+
+    for (var i = 0; i < repositories.length; i++) {
+        var repository = repositories[i];
+        var project = document.createElement("li");
+
+        var projectLink = document.createElement("a");
+        projectLink.href = repository.html_url;
+        projectLink.textContent = repository.name;
+        project.appendChild(projectLink);
+
+        var projectInfo = document.createElement("p");
+        projectInfo.textContent = repository.description + " : " + repository.updated_at;
+        project.appendChild(projectInfo);
+
+        projectList.appendChild(project);
+    }
+});
+
+githubRequest.addEventListener("error", function () {
+    // An error occurred while making the request
+    console.log("An error occurred");
+});
+
+githubRequest.open("GET", url);
+githubRequest.send();
