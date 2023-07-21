@@ -70,9 +70,10 @@ messageForm.addEventListener('submit', function (event) {
     messageForm.reset();
 });
 
-var githubRequest = new XMLHttpRequest();
+let githubRequest = new XMLHttpRequest();
 var githubUsername = "Haregebezu";
-var url = "https://api.github.com/users/" + githubUsername + "/repos";
+const url = `https://api.github.com/users/
+${githubUsername}/repos`;
 
 githubRequest.addEventListener("load", function () {
     // Request completed successfully
@@ -91,7 +92,7 @@ githubRequest.addEventListener("load", function () {
         project.appendChild(projectLink);
 
         var projectInfo = document.createElement("p");
-        projectInfo.textContent = repository.description + " : " + repository.updated_at;
+        projectInfo.textContent = repository.updated_at;
         project.appendChild(projectInfo);
 
         projectList.appendChild(project);
