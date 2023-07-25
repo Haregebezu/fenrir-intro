@@ -70,39 +70,29 @@ messageForm.addEventListener('submit', function (event) {
     messageForm.reset();
 });
 
-let githubRequest = new XMLHttpRequest();
 var githubUsername = "Haregebezu";
-const url = `https://api.github.com/users/
-${githubUsername}/repos`;
+const url = `https://api.github.com/users/${githubUsername}/repos`;
+var projects = document.getElementById("projects");
 
-githubRequest.addEventListener("load", function () {
-    // Request completed successfully
-    var repositories = JSON.parse(this.responseText);
+fetch(url)
+    .then((response) => response.json())
+    .then((repositories) => {
+        repositories.forEach((repository) => {
+            var project = document.createElement("li");
 
-    var projectSection = document.getElementById("projects");
-    var projectList = projectSection.querySelector("ul");
+            var projectLink = document.createElement("a");
+            projectLink.href = repository.html_url;
+            projectLink.textContent = repository.name;
+            project.appendChild(projectLink);
 
-    for (var i = 0; i < repositories.length; i++) {
-        var repository = repositories[i];
-        var project = document.createElement("li");
+            var projectInfo = document.createElement("p");
+            projectInfo.textContent = repository.updated_at;
+            project.appendChild(projectInfo);
 
-        var projectLink = document.createElement("a");
-        projectLink.href = repository.html_url;
-        projectLink.textContent = repository.name;
-        project.appendChild(projectLink);
+            projects.appendChild(project);
+        });
+    })
+    .catch((error) => {
+        console.error("Error fetching repositories:", error.message);
+    });
 
-        var projectInfo = document.createElement("p");
-        projectInfo.textContent = repository.updated_at;
-        project.appendChild(projectInfo);
-
-        projectList.appendChild(project);
-    }
-});
-
-githubRequest.addEventListener("error", function () {
-    // An error occurred while making the request
-    console.log("An error occurred");
-});
-
-githubRequest.open("GET", url);
-githubRequest.send();
