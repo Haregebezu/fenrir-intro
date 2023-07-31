@@ -3,7 +3,7 @@ var thisYear = today.getFullYear();
 var footer = document.querySelector("footer");
 var copyright = document.createElement('p');
 var thisYear = new Date().getFullYear();
-copyright.innerHTML = "Haregebezu Amare" + "\u00A9 " + thisYear;
+copyright.innerText = "Haregebezu Amare" + "\u00A9 " + thisYear;
 footer.appendChild(copyright);
 var skills = [
     "HTML",
@@ -46,7 +46,7 @@ messageForm.addEventListener('submit', function (event) {
     // Create a new list item element
     const newMessage = document.createElement('li');
     // Set the inner HTML of the newMessage element
-    newMessage.innerHTML = `
+    newMessage.innerText = `
         <a href="mailto:${usersEmail}">${usersName}</a>
         <span>${formattedMessage}</span>
     `;
