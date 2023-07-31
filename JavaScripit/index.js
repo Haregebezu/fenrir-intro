@@ -2,8 +2,9 @@ const today = new Date();
 var thisYear = today.getFullYear();
 var footer = document.querySelector("footer");
 var copyright = document.createElement('p');
+var thisYear = new Date().getFullYear();
+copyright.innerHTML = "Haregebezu Amare" + "\u00A9 " + thisYear;
 footer.appendChild(copyright);
-copyright.innerHTML = "\u00A9 " + thisYear;
 var skills = [
     "HTML",
     "CSS",
@@ -51,7 +52,7 @@ messageForm.addEventListener('submit', function (event) {
     `;
     // Create a new <button> element
     const removeButton = document.createElement('button');
-    removeButton.innerText = "remove";
+    removeButton.innerText = "Remove";
     removeButton.type = 'button';
     // Add event listener to the removeButton
     removeButton.addEventListener('click', function () {
@@ -70,9 +71,9 @@ messageForm.addEventListener('submit', function (event) {
     messageForm.reset();
 });
 
-var githubUsername = "Haregebezu";
+const githubUsername = "Haregebezu";
 const url = `https://api.github.com/users/${githubUsername}/repos`;
-var projects = document.getElementById("projects");
+const projects = document.getElementById("projects");
 
 fetch(url)
     .then((response) => response.json())
