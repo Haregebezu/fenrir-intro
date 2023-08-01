@@ -2,8 +2,9 @@ const today = new Date();
 var thisYear = today.getFullYear();
 var footer = document.querySelector("footer");
 var copyright = document.createElement('p');
+var thisYear = new Date().getFullYear();
+copyright.innerText = "Haregebezu Amare" + "\u00A9 " + thisYear;
 footer.appendChild(copyright);
-copyright.innerHTML = "\u00A9 " + thisYear;
 var skills = [
     "HTML",
     "CSS",
@@ -45,13 +46,13 @@ messageForm.addEventListener('submit', function (event) {
     // Create a new list item element
     const newMessage = document.createElement('li');
     // Set the inner HTML of the newMessage element
-    newMessage.innerHTML = `
+    newMessage.innerText = `
         <a href="mailto:${usersEmail}">${usersName}</a>
         <span>${formattedMessage}</span>
     `;
     // Create a new <button> element
     const removeButton = document.createElement('button');
-    removeButton.innerText = "remove";
+    removeButton.innerText = "Remove";
     removeButton.type = 'button';
     // Add event listener to the removeButton
     removeButton.addEventListener('click', function () {
@@ -70,39 +71,29 @@ messageForm.addEventListener('submit', function (event) {
     messageForm.reset();
 });
 
-let githubRequest = new XMLHttpRequest();
-var githubUsername = "Haregebezu";
-const url = `https://api.github.com/users/
-${githubUsername}/repos`;
+const githubUsername = "Haregebezu";
+const url = `https://api.github.com/users/${githubUsername}/repos`;
+const projects = document.getElementById("projects");
 
-githubRequest.addEventListener("load", function () {
-    // Request completed successfully
-    var repositories = JSON.parse(this.responseText);
+fetch(url)
+    .then((response) => response.json())
+    .then((repositories) => {
+        repositories.forEach((repository) => {
+            var project = document.createElement("li");
 
-    var projectSection = document.getElementById("projects");
-    var projectList = projectSection.querySelector("ul");
+            var projectLink = document.createElement("a");
+            projectLink.href = repository.html_url;
+            projectLink.textContent = repository.name;
+            project.appendChild(projectLink);
 
-    for (var i = 0; i < repositories.length; i++) {
-        var repository = repositories[i];
-        var project = document.createElement("li");
+            var projectInfo = document.createElement("p");
+            projectInfo.textContent = repository.updated_at;
+            project.appendChild(projectInfo);
 
-        var projectLink = document.createElement("a");
-        projectLink.href = repository.html_url;
-        projectLink.textContent = repository.name;
-        project.appendChild(projectLink);
+            projects.appendChild(project);
+        });
+    })
+    .catch((error) => {
+        console.error("Error fetching repositories:", error.message);
+    });
 
-        var projectInfo = document.createElement("p");
-        projectInfo.textContent = repository.updated_at;
-        project.appendChild(projectInfo);
-
-        projectList.appendChild(project);
-    }
-});
-
-githubRequest.addEventListener("error", function () {
-    // An error occurred while making the request
-    console.log("An error occurred");
-});
-
-githubRequest.open("GET", url);
-githubRequest.send();
