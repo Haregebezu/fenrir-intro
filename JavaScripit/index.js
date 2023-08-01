@@ -3,7 +3,7 @@ var thisYear = today.getFullYear();
 var footer = document.querySelector("footer");
 var copyright = document.createElement('p');
 var thisYear = new Date().getFullYear();
-copyright.innerHTML = "Haregebezu Amare" + "\u00A9 " + thisYear;
+copyright.innerText = "Haregebezu Amare" + "\u00A9 " + thisYear;
 footer.appendChild(copyright);
 var skills = [
     "HTML",
@@ -18,7 +18,7 @@ var skillsSection = document.querySelector("#skills");
 var skillsList = skillsSection.querySelector('ul');
 for (var i = 0; i < skills.length; i++) {
     var skill = document.createElement("li");
-    skill.innerHTML = skills[i];
+    skill.innerText = skills[i];
     skillsList.appendChild(skill); 
 }
 // DOM Selection
@@ -46,13 +46,13 @@ messageForm.addEventListener('submit', function (event) {
     // Create a new list item element
     const newMessage = document.createElement('li');
     // Set the inner HTML of the newMessage element
-    newMessage.innerHTML = `
+    newMessage.innerText = `
         <a href="mailto:${usersEmail}">${usersName}</a>
         <span>${formattedMessage}</span>
     `;
     // Create a new <button> element
     const removeButton = document.createElement('button');
-    removeButton.innerHTML= "Remove";
+    removeButton.innerText= "Remove";
     removeButton.type = 'button';
     // Add event listener to the removeButton
     removeButton.addEventListener('click', function () {
